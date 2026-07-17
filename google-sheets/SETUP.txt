@@ -1,0 +1,81 @@
+CONNECT YOUR WEBSITE FORMS TO GOOGLE SHEETS
+===========================================
+
+This sends every "Get a Quote" and "Contact Us" submission straight
+into a Google Sheet you own. It is free and needs no server. Takes
+about 5 minutes. Do it once.
+
+
+STEP 1  -  Create the Google Sheet
+----------------------------------
+1. Go to https://sheets.google.com and create a new blank spreadsheet.
+2. Name it something like "Jade Benefits Leads".
+   (You do not need to add any tabs or headers. The script makes them.)
+
+
+STEP 2  -  Add the script
+-------------------------
+1. In that spreadsheet, click  Extensions  >  Apps Script.
+2. Delete whatever code is in the editor.
+3. Open the file  Code.gs  (in this google-sheets folder), copy ALL of
+   it, and paste it into the Apps Script editor.
+4. Click the floppy disk icon to Save.
+
+
+STEP 3  -  Deploy it as a Web App
+---------------------------------
+1. Click the blue  Deploy  button (top right)  >  New deployment.
+2. Click the gear icon next to "Select type" and choose  Web app.
+3. Set the fields:
+      Description:   Jade Benefits forms
+      Execute as:    Me (your email)
+      Who has access:  Anyone
+   (Anyone is required so your website visitors can submit. They only
+    write data, they cannot read your sheet.)
+4. Click  Deploy.
+5. Click  Authorize access  and approve the permissions for your
+   own Google account. If Google shows an "unverified app" warning,
+   click "Advanced" then "Go to (project name)" and Allow. This is
+   normal for your own scripts.
+6. Copy the  Web app URL. It looks like:
+      https://script.google.com/macros/s/AKfy...long.../exec
+
+
+STEP 4  -  Paste the URL into the website
+-----------------------------------------
+1. Open the file  assets/js/sheet.js  in your project.
+2. On this line:
+      window.JADE_SHEET_ENDPOINT = "";
+   paste your URL between the quotes, so it reads:
+      window.JADE_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfy.../exec";
+3. Save the file, then re-deploy your site (push to GitHub / Vercel).
+
+
+DONE
+----
+Submit a test quote and a test contact message on your live site.
+Within a second or two you will see new rows appear in your sheet,
+on a "Quotes" tab and a "Contacts" tab.
+
+
+UPDATING THE SCRIPT LATER
+-------------------------
+If you ever change Code.gs, you must Deploy again:
+   Deploy  >  Manage deployments  >  pencil/edit  >  Version: New version  >  Deploy.
+Otherwise the old version keeps running.
+
+
+EMAIL ALERTS (already built in)
+-------------------------------
+The script also emails you at  Chloe@jadebenefits.com  every time a new
+quote or contact comes in, so you do not have to watch the sheet.
+
+Notes:
+- During Step 3 authorization, Google will also ask to allow sending
+  email on your behalf. Approve it. That is what powers the alerts.
+- The first alert may land in your Spam/Promotions folder once. Mark it
+  "Not spam" so future ones go to your inbox.
+- To send alerts to a different address, open Code.gs and change the
+  line near the top:  var NOTIFY_EMAIL = "Chloe@jadebenefits.com";
+- Google allows a large number of these emails per day on a free
+  account, far more than a small business site will ever need.
