@@ -5,6 +5,29 @@
 (function () {
   "use strict";
 
+  /* ---------- Page loader ---------- */
+  (function () {
+    var loader = document.getElementById("page-loader");
+    if (!loader) return;
+    var minShow = 450;
+    var start = Date.now();
+    var fired = false;
+    function hide() {
+      if (fired) return;
+      fired = true;
+      var wait = Math.max(minShow - (Date.now() - start), 0);
+      setTimeout(function () {
+        loader.classList.add("done");
+        setTimeout(function () {
+          if (loader.parentNode) loader.parentNode.removeChild(loader);
+        }, 400);
+      }, wait);
+    }
+    if (document.readyState === "complete") hide();
+    else window.addEventListener("load", hide);
+    setTimeout(hide, 3000); /* safety cap so it can never get stuck */
+  })();
+
   /* ---------- Mobile hamburger menu ---------- */
   var toggle = document.querySelector(".menu-toggle");
   var nav = document.getElementById("nav-links");
