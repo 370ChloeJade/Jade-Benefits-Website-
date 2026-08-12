@@ -97,6 +97,14 @@ footer .brand{margin-bottom:12px}
 .carrier{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 12px;white-space:nowrap;opacity:.85;transition:opacity .2s ease}
 .carrier:hover{opacity:1}
 .carrier img{height:32px;width:auto;display:block;object-fit:contain}
+/* Per-logo height tweaks so bolder/wider marks read at the same visual size as smaller, more detailed ones */
+.carrier img.logo-aetna{height:28px}
+.carrier img.logo-humana{height:26px}
+.carrier img.logo-florida-blue{height:29px}
+.carrier img.logo-anthem{height:30px}
+.carrier img.logo-kaiser-permanente{height:33px}
+.carrier img.logo-molina-healthcare{height:33px}
+.carrier img.logo-oscar{height:24px}
 .carrier .rated{font-size:.62rem;font-weight:700;color:#fff;background:var(--green-600);padding:2px 6px;border-radius:6px;letter-spacing:.04em}
 .carrier.accent{color:var(--green-700)}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -221,4 +229,11 @@ footer a:hover{color:#fff}
   .carrier-track{gap:60px;animation-duration:48s}
   .carrier{height:50px;padding:0 20px}
   .carrier img{height:38px}
+  .carrier img.logo-aetna{height:33px}
+  .carrier img.logo-humana{height:30px}
+  .carrier img.logo-florida-blue{height:34px}
+  .carrier img.logo-anthem{height:36px}
+  .carrier img.logo-kaiser-permanente{height:39px}
+  .carrier img.logo-molina-healthcare{height:39px}
+  .carrier img.logo-oscar{height:29px}
 }
