@@ -67,7 +67,7 @@ Otherwise the old version keeps running.
 
 EMAIL ALERTS (already built in)
 -------------------------------
-The script also emails you at  Chloe@jadebenefits.com  every time a new
+The script also emails you at  info@jadebenefits.com  every time a new
 quote or contact comes in, so you do not have to watch the sheet.
 
 Notes:
@@ -76,6 +76,6 @@ Notes:
 - The first alert may land in your Spam/Promotions folder once. Mark it
   "Not spam" so future ones go to your inbox.
 - To send alerts to a different address, open Code.gs and change the
-  line near the top:  var NOTIFY_EMAIL = "Chloe@jadebenefits.com";
+  line near the top:  var NOTIFY_EMAIL = "info@jadebenefits.com";
 - Google allows a large number of these emails per day on a free
   account, far more than a small business site will ever need.

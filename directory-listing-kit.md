@@ -7,7 +7,7 @@ Use this as your copy-paste reference when signing up for each directory below. 
 - **Business name:** Jade Benefits
 - **Category:** Insurance Agency / Health Insurance Broker
 - **Phone:** 352-949-4463
-- **Email:** Chloe@jadebenefits.com
+- **Email:** info@jadebenefits.com
 - **Website:** https://jadebenefits.com
 - **Service area:** Fort Lauderdale, FL — serving Broward County, Miami-Dade, and Palm Beach County, with nationwide carrier networks
 - **Hours:** Set to your real hours, or "By appointment" if that fits better
