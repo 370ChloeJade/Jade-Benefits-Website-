@@ -8,6 +8,17 @@
 window.JADE_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycby-m0b6OFzv7Vcc-MgB_JyZBuNBZ3KTTmCtAlxTX3q_b4NYhIx0ReoABCcpgGEOn2c8gA/exec";
 
 window.jadeSubmit = function (formType, data) {
+  /* Fire the GA4 "qualify_lead" key event on every quote/contact form
+     submission, regardless of whether the Google Sheet send below
+     succeeds. This is what Google Ads conversion tracking should point
+     to once ads are running. */
+  if (window.gtag) {
+    gtag('event', 'qualify_lead', {
+      form_type: formType,
+      page_path: location.pathname
+    });
+  }
+
   var url = window.JADE_SHEET_ENDPOINT;
   if (!url) {
     console.warn("Jade Benefits: JADE_SHEET_ENDPOINT is not set yet, skipping Google Sheet send.");

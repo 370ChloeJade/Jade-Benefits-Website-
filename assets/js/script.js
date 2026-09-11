@@ -120,4 +120,15 @@
   /* ---------- Footer year ---------- */
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
+
+  /* ---------- GA4 key events: phone & email clicks ---------- */
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');
+    if (!link || !window.gtag) return;
+    var isPhone = link.getAttribute("href").indexOf("tel:") === 0;
+    gtag('event', 'qualify_lead', {
+      form_type: isPhone ? "phone_click" : "email_click",
+      page_path: location.pathname
+    });
+  });
 })();
