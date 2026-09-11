@@ -1,4 +1,17 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "jadebenefits.com" }],
+      "destination": "https://www.jadebenefits.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog-choosing-group-health-plan",
+      "destination": "/blog-small-business",
+      "permanent": true
+    }
+  ]
 }
