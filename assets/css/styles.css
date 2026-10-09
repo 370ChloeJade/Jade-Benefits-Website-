@@ -225,7 +225,7 @@ footer a:hover{color:#fff}
   .cards{grid-template-columns:repeat(3,1fr)}
   .process{grid-template-columns:repeat(4,1fr)}
   .feature-grid{grid-template-columns:repeat(3,1fr)}
-  .foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px}
+  .foot-grid{grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px}
   .carrier-track{gap:60px;animation-duration:48s}
   .carrier{height:50px;padding:0 20px}
   .carrier img{height:38px}
