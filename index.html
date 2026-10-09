@@ -124,11 +124,24 @@
 
 <!-- ===================== OPEN ENROLLMENT BANNER ===================== -->
 <div class="oe-banner" style="background:var(--green-800);color:#fff;text-align:center;padding:12px 16px;font-size:.95rem;line-height:1.5">
-  <strong>Open enrollment for 2027 starts Nov 1.</strong> Dec 15 is the deadline for Jan 1 coverage.
+  <strong id="oe-count">Open enrollment for 2027 starts Nov 1.</strong> <span id="oe-sub">Dec 15 is the deadline for Jan 1 coverage.</span>
   <a href="/aca-subsidy-calculator" style="color:#fff;font-weight:700;text-decoration:underline;margin-left:6px">Estimate your subsidy</a>
   <span style="opacity:.6;margin:0 6px">|</span>
   <a href="/blog-open-enrollment" style="color:#fff;font-weight:700;text-decoration:underline">See the dates</a>
 </div>
+<script>
+(function(){
+  var c=document.getElementById('oe-count'), s=document.getElementById('oe-sub');
+  if(!c||!s) return;
+  var now=new Date(), start=new Date(2026,10,1), dec15=new Date(2026,11,15,23,59,59), jan15=new Date(2027,0,15,23,59,59);
+  var days=function(to){ return Math.max(1, Math.ceil((to-now)/86400000)); };
+  var d, u=function(n){ return n+(n===1?' day':' days'); };
+  if(now<start){ d=days(start); c.textContent=u(d)+' until open enrollment for 2027 coverage.'; s.textContent='It starts Nov 1. Dec 15 is the deadline for Jan 1 coverage.'; }
+  else if(now<=dec15){ d=days(dec15); c.textContent='Open enrollment is open. '+u(d)+' left for Jan 1 coverage.'; s.textContent='Enroll by Dec 15 to start Jan 1.'; }
+  else if(now<=jan15){ d=days(jan15); c.textContent=u(d)+' left in open enrollment.'; s.textContent='Plans chosen now start Feb 1. Window closes Jan 15.'; }
+  else { c.textContent='Open enrollment has closed.'; s.textContent='Special enrollment may still be available if you have a qualifying life event.'; }
+})();
+</script>
 
 <!-- ===================== HERO ===================== -->
 <section class="hero">
