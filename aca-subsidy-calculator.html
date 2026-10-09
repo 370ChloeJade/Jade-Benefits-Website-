@@ -55,32 +55,33 @@
   .timeline strong{color:var(--green-700);display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
 </style>
 <style>
-  .calc{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:26px;margin:8px 0 28px}
-  .calc-grid{display:grid;grid-template-columns:1fr;gap:16px}
-  @media(min-width:640px){.calc-grid{grid-template-columns:1fr 1fr}.calc-grid .full{grid-column:1 / -1}}
-  .calc label{display:block;font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:6px}
-  .calc .hint{display:block;font-weight:400;font-size:.8rem;color:var(--muted);margin-top:2px}
-  .calc input,.calc select{width:100%;min-height:48px;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:1rem;color:var(--ink);background:#fff}
+  .calc{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:30px 26px;margin:8px 0 30px}
+  .calc h2{margin:0 0 4px;font-size:1.5rem}
+  .calc .sub{margin:0 0 20px;color:var(--muted);font-size:1rem}
+  .dots{display:flex;gap:8px;margin-bottom:18px}
+  .dots span{height:6px;flex:1;border-radius:99px;background:var(--line)}
+  .dots span.on{background:var(--green-600)}
+  .calc label{display:block;font-weight:600;font-size:1rem;color:var(--ink);margin:16px 0 6px}
+  .calc input,.calc select{width:100%;min-height:54px;padding:12px 16px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:1.08rem;color:var(--ink);background:#fff}
   .calc input:focus,.calc select:focus{outline:none;border-color:var(--green-600);box-shadow:0 0 0 3px var(--green-100)}
   .calc .money{position:relative}
-  .calc .money span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
-  .calc .money input{padding-left:28px}
-  .calc-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
-  .result{display:none;margin-top:24px;border-top:1px solid var(--line);padding-top:22px}
-  .result.show{display:block}
-  .res-head{font-family:'Poppins',sans-serif;font-weight:700;font-size:1.25rem;color:var(--green-900);margin:0 0 6px}
-  .res-sub{margin:0 0 16px;color:var(--ink-2)}
-  .stats{display:grid;grid-template-columns:1fr;gap:12px;margin:0 0 16px}
-  @media(min-width:640px){.stats{grid-template-columns:1fr 1fr 1fr}}
-  .stat{background:var(--green-50);border:1px solid var(--green-100);border-radius:14px;padding:14px 16px}
-  .stat b{display:block;font-family:'Poppins',sans-serif;font-size:1.45rem;color:var(--green-700);line-height:1.2}
-  .stat small{display:block;color:var(--muted);font-size:.8rem;margin-top:4px}
-  .bar{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#43c585 0%,#23a96b 60%,#e9b44c 85%,#d9534f 100%);margin:26px 0 8px}
+  .calc .money span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
+  .calc .money input{padding-left:30px}
+  .calc .btn{width:100%;margin-top:22px;min-height:56px;font-size:1.05rem}
+  .calc .back{display:block;margin:12px auto 0;background:none;border:0;color:var(--muted);font:inherit;font-size:.92rem;cursor:pointer;text-decoration:underline}
+  .consent{font-size:.78rem;color:var(--muted);margin:12px 0 0;line-height:1.5}
+  .err{display:none;color:#b3261e;font-weight:600;margin:12px 0 0;font-size:.95rem}
+  .pane{display:none}.pane.show{display:block}
+  .big{text-align:center;padding:6px 0 4px}
+  .big small{display:block;color:var(--muted);font-size:.95rem}
+  .big b{display:block;font-family:'Poppins',sans-serif;font-size:3rem;line-height:1.15;color:var(--green-700);margin:4px 0}
+  .bar{position:relative;height:12px;border-radius:999px;background:linear-gradient(90deg,#43c585 0%,#23a96b 60%,#e9b44c 85%,#d9534f 100%);margin:30px 0 8px}
   .bar i{position:absolute;top:-6px;width:4px;height:24px;border-radius:2px;background:var(--ink);transform:translateX(-50%)}
-  .bar-labels{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted)}
-  .note-box{background:#fff8e8;border:1px solid #f1dca8;border-left:4px solid #e9b44c;border-radius:12px;padding:14px 16px;margin:16px 0;color:var(--ink-2);font-size:.95rem}
+  .bar-labels{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+  .note-box{background:#fff8e8;border:1px solid #f1dca8;border-left:4px solid #e9b44c;border-radius:12px;padding:14px 16px;margin:18px 0 0;color:var(--ink-2);font-size:1rem}
   .note-box.good{background:var(--green-50);border-color:var(--green-100);border-left-color:var(--green-600)}
-  .fine{font-size:.82rem;color:var(--muted);margin-top:14px}
+  .fine{font-size:.8rem;color:var(--muted);margin-top:16px;text-align:center}
+  .call{display:block;text-align:center;margin-top:12px;font-weight:600}
 </style>
 <script type="application/ld+json">
 {
@@ -166,6 +167,14 @@
         "@type": "Answer",
         "text": "No. It is an estimate based on the 2027 IRS applicable percentage table and the 2026 federal poverty guidelines for the 48 contiguous states and DC. Your actual credit is determined when you apply, and reconciled on your tax return."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do you ask for my contact information?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "So a licensed Jade Benefits advisor can look up the real plans and prices in your ZIP code and follow up with your exact numbers. It is free and there is no obligation."
+      }
     }
   ]
 }
@@ -199,37 +208,52 @@
 
 <section class="section">
   <div class="container article">
-    <p>Open enrollment for 2027 coverage starts November 1. Enter your household size and estimated income to see roughly how much help you could get with premiums, and how close you are to the 400% poverty level cutoff where subsidies stop.</p>
+    <p>See how much help you could get with your 2027 health insurance premium. It takes about 30 seconds.</p>
 
+    <div id="calc"></div>
     <form id="calc-form" class="calc" novalidate>
-      <div class="calc-grid">
-        <div>
-          <label for="size">Household size<span class="hint">Everyone in your tax household</span></label>
-          <select id="size">
-            <option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option>
-            <option value="4">4 people</option><option value="5">5 people</option><option value="6">6 people</option>
-            <option value="7">7 people</option><option value="8">8 people</option>
-          </select>
-        </div>
-        <div>
-          <label for="income">Estimated 2027 household income<span class="hint">MAGI. For self-employed, use net profit</span></label>
-          <div class="money"><span>$</span><input id="income" type="text" inputmode="numeric" autocomplete="off" placeholder="55,000" /></div>
-        </div>
-        <div class="full">
-          <label for="benchmark">Benchmark premium per month (optional)<span class="hint">The second-lowest-cost Silver plan for your household. Not sure? Leave blank, or ask us to look it up.</span></label>
-          <div class="money"><span>$</span><input id="benchmark" type="text" inputmode="numeric" autocomplete="off" placeholder="850" /></div>
-        </div>
+      <div class="dots" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+
+      <div id="pane-1" class="pane show">
+        <h2>Your household</h2>
+        <p class="sub">Step 1 of 2</p>
+        <label for="size">How many people are in your household?</label>
+        <select id="size">
+          <option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option>
+          <option value="4">4 people</option><option value="5">5 people</option><option value="6">6 people</option>
+          <option value="7">7 people</option><option value="8">8 people</option>
+        </select>
+        <label for="income">Estimated 2027 household income</label>
+        <div class="money"><span>$</span><input id="income" type="text" inputmode="numeric" autocomplete="off" placeholder="55,000" /></div>
+        <label for="zip">ZIP code</label>
+        <input id="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="33301" />
+        <p id="err1" class="err"></p>
+        <button class="btn btn-primary" type="button" id="next">Next</button>
       </div>
-      <p id="calc-error" style="display:none;color:#b3261e;font-weight:600;margin:14px 0 0"></p>
-      <div class="calc-actions"><button class="btn btn-primary" type="submit">Calculate My Subsidy</button></div>
-      <div id="result" class="result" role="status" aria-live="polite"></div>
+
+      <div id="pane-2" class="pane">
+        <h2>Where should we send your results?</h2>
+        <p class="sub">Step 2 of 2. Your estimate is ready.</p>
+        <label for="name">Full name</label>
+        <input id="name" type="text" autocomplete="name" />
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" />
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" autocomplete="tel" />
+        <p id="err2" class="err"></p>
+        <button class="btn btn-primary" type="submit">See My Estimate</button>
+        <button class="back" type="button" id="back">Back</button>
+        <p class="consent">By continuing, you agree that Jade Benefits may contact you about health coverage by phone, text, or email. Free, no obligation. See our <a href="/privacy">Privacy Policy</a>.</p>
+      </div>
+
+      <div id="pane-3" class="pane">
+        <h2>Your estimate</h2>
+        <div id="result" role="status" aria-live="polite"></div>
+      </div>
     </form>
 
-    <h2 id="how">How the calculator works</h2>
-    <p>Your premium tax credit is the price of the benchmark plan minus what you are expected to contribute. The IRS sets your expected contribution as a percentage of income, and for 2027 it ranges from 2.15% at the lowest incomes up to 10.22% for households between 300% and 400% of the federal poverty level. The calculator applies that table, using the 2026 federal poverty guidelines that apply to 2027 coverage.</p>
-
-    <h2 id="cliff">Why 400% matters now</h2>
-    <p>The enhanced subsidies that removed the income cap have expired, so the 400% line is back. Go even a dollar over it and the credit disappears entirely. If you are self-employed or run a small business, your income may be easier to plan around than you think. Read our guide on <a href="/blog-aca-subsidy-cliff-2026">why ACA premiums jumped in 2026</a>, and see how subsidies work for <a href="/self-employed-health-insurance-florida">self-employed Floridians</a>.</p>
+    <h2 id="how">How it works</h2>
+    <p>Your credit is the price of the benchmark plan minus what the IRS expects you to contribute, a percentage of income that runs from 2.15% up to 10.22% for 2027. Go over 400% of the federal poverty level and the credit stops. Read <a href="/blog-aca-subsidy-cliff-2026">why ACA premiums jumped in 2026</a>, or see how it works for <a href="/self-employed-health-insurance-florida">self-employed Floridians</a>.</p>
 
     <h2 id="faq">Frequently asked questions</h2>
     <details class="faq-item"><summary>How is my ACA premium tax credit calculated?</summary><p>The credit equals the cost of the benchmark plan (the second-lowest-cost Silver plan in your area) minus your expected contribution. Your expected contribution is a percentage of your household income, set by the IRS each year, and it rises as your income rises.</p></details>
@@ -237,6 +261,7 @@
     <details class="faq-item"><summary>What is the 400% FPL subsidy cliff?</summary><p>Since the enhanced subsidies expired, households with income above 400% of the federal poverty level no longer qualify for any premium tax credit. A dollar over the line can mean paying full price for the plan.</p></details>
     <details class="faq-item"><summary>What if my income is below 100% of the poverty level?</summary><p>In most cases you are not eligible for marketplace premium tax credits. Florida has not expanded Medicaid, so options can be limited. Contact us and we will review what is available to you.</p></details>
     <details class="faq-item"><summary>Is this calculator exact?</summary><p>No. It is an estimate based on the 2027 IRS applicable percentage table and the 2026 federal poverty guidelines for the 48 contiguous states and DC. Your actual credit is determined when you apply, and reconciled on your tax return.</p></details>
+    <details class="faq-item"><summary>Why do you ask for my contact information?</summary><p>So a licensed Jade Benefits advisor can look up the real plans and prices in your ZIP code and follow up with your exact numbers. It is free and there is no obligation.</p></details>
 
     <div class="related" style="margin-top:44px;border-top:1px solid var(--line);padding-top:26px">
       <h2 style="font-size:1.3rem;margin-bottom:14px">Related guides</h2>
@@ -246,12 +271,6 @@
         <li><a href="/blog-open-enrollment" style="font-weight:600">When Is Open Enrollment for Health Insurance in 2027?</a></li>
         <li><a href="/self-employed-health-insurance-florida" style="font-weight:600">Self-Employed Health Insurance in Florida (2027)</a></li>
       </ul>
-    </div>
-
-    <div class="cta-strip reveal" style="margin-top:40px">
-      <h2>Want your exact numbers?</h2>
-      <p>We look up your real benchmark premium, compare every plan, and handle enrollment, for free.</p>
-      <a class="btn btn-secondary" href="/quote" style="background:#fff;color:var(--green-700);border-color:#fff">Get a Free Quote</a>
     </div>
   </div>
 </section>
@@ -325,6 +344,7 @@
 
 <button class="to-top" aria-label="Back to top">&#8593;</button>
 
+<script src="assets/js/sheet.js"></script>
 <script>
 // 2027 plan year: IRS Rev. Proc. 2026-26 applicable percentages; 2026 HHS poverty guidelines (48 states + DC)
 var FPL_BASE = 15960, FPL_STEP = 5680;
@@ -337,7 +357,7 @@ var BANDS = [
   [3.00, 4.00, 10.22, 10.22]
 ];
 function jbFpl(size){ return FPL_BASE + FPL_STEP * (size - 1); }
-function jbCalc(income, size, benchmark){
+function jbCalc(income, size){
   var fpl = jbFpl(size), ratio = income / fpl, out = {fpl: fpl, ratio: ratio, limit: fpl * 4};
   if (ratio < 1.0) { out.status = 'below'; return out; }
   if (ratio > 4.0) { out.status = 'above'; out.over = income - out.limit; return out; }
@@ -354,69 +374,80 @@ function jbCalc(income, size, benchmark){
   out.annual = income * pct / 100;
   out.monthly = out.annual / 12;
   out.room = out.limit - income;
-  if (benchmark && benchmark > 0) { out.credit = Math.max(0, benchmark - out.monthly); out.benchmark = benchmark; }
   return out;
 }
 
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   var money = function(n){ return '$' + Math.round(n).toLocaleString('en-US'); };
-  var clean = function(v){ return parseFloat(String(v).replace(/[^0-9.]/g,'')) || 0; };
-  ['income','benchmark'].forEach(function(id){
-    $(id).addEventListener('input', function(){
-      var d = this.value.replace(/[^0-9]/g,'');
-      this.value = d ? Number(d).toLocaleString('en-US') : '';
-    });
+  var num = function(v){ return parseFloat(String(v).replace(/[^0-9.]/g,'')) || 0; };
+  var dots = document.querySelectorAll('.dots span');
+  function show(id, step){
+    ['pane-1','pane-2','pane-3'].forEach(function(p){ $(p).classList.toggle('show', p === id); });
+    dots.forEach(function(d, i){ d.classList.toggle('on', i < step); });
+    $('calc').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  function fail(id, msg){ var e = $(id); e.textContent = msg; e.style.display = 'block'; }
+  $('income').addEventListener('input', function(){
+    var d = this.value.replace(/[^0-9]/g,''); this.value = d ? Number(d).toLocaleString('en-US') : '';
   });
+  $('zip').addEventListener('input', function(){ this.value = this.value.replace(/[^0-9]/g,'').slice(0,5); });
+
+  $('next').addEventListener('click', function(){
+    $('err1').style.display = 'none';
+    if (!num($('income').value)) return fail('err1', 'Please enter your estimated 2027 household income.');
+    if (!/^\d{5}$/.test($('zip').value)) return fail('err1', 'Please enter a 5 digit ZIP code.');
+    show('pane-2', 2);
+  });
+  $('back').addEventListener('click', function(){ show('pane-1', 1); });
+
   $('calc-form').addEventListener('submit', function(e){
     e.preventDefault();
-    var income = clean($('income').value), size = parseInt($('size').value,10), bench = clean($('benchmark').value);
-    var err = $('calc-error');
-    if (!income) { err.textContent = 'Please enter your estimated 2027 household income.'; err.style.display='block'; return; }
-    err.style.display='none';
-    var r = jbCalc(income, size, bench);
-    var h = '', box = $('result');
+    $('err2').style.display = 'none';
+    var name = $('name').value.trim(), email = $('email').value.trim(), phone = $('phone').value.trim();
+    if (name.length < 2) return fail('err2', 'Please enter your name.');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('err2', 'Please enter a valid email.');
+    if (phone.replace(/\D/g,'').length < 10) return fail('err2', 'Please enter a valid phone number.');
+
+    var income = num($('income').value), size = parseInt($('size').value, 10), zip = $('zip').value;
+    var r = jbCalc(income, size);
+    var offState = /^(99[5-9]|96[78])/.test(zip);
+
+    // Send the lead (fires the GA4 qualify_lead event and saves to the Google Sheet "Contacts" tab)
+    var summary = 'Subsidy calculator: household of ' + size + ', est. 2027 income ' + money(income) + ', ZIP ' + zip +
+      (r.status === 'eligible' ? ', est. monthly contribution ' + money(r.monthly) : ', status: ' + r.status);
+    if (window.jadeSubmit) {
+      window.jadeSubmit('subsidy_calculator', {name: name, email: email, phone: phone, zip: zip,
+        householdSize: size, income: income, type: 'Subsidy calculator', message: summary});
+    }
+    if (typeof gtag === 'function') { gtag('event', 'subsidy_calculator_used', {household_size: size, status: r.status}); }
+
+    var h = '';
     if (r.status === 'below') {
-      h += '<h3 class="res-head">Your income is below the marketplace subsidy range</h3>';
-      h += '<p class="res-sub">At ' + Math.round(r.ratio*100) + '% of the poverty level, you generally do not qualify for premium tax credits. Florida has not expanded Medicaid, so options can be limited, but there may still be coverage paths available to you.</p>';
-      h += '<div class="note-box">Reach out and we will review your situation for free. Household size and immigration status can change what you qualify for.</div>';
+      h += '<div class="big"><small>Your estimate</small><b style="font-size:1.7rem">Below the subsidy range</b></div>';
+      h += '<div class="note-box">At ' + Math.round(r.ratio*100) + '% of the poverty level you generally do not qualify for premium tax credits. Florida has not expanded Medicaid, so we will review the options that are open to you.</div>';
     } else if (r.status === 'above') {
-      h += '<h3 class="res-head">You are above the 400% subsidy limit</h3>';
-      h += '<p class="res-sub">For a household of ' + size + ', the limit is ' + money(r.limit) + '. Your income is about ' + money(r.over) + ' over it, so you would not receive a premium tax credit and would pay full price for a marketplace plan.</p>';
-      h += '<div class="note-box">Income that is close to the line can sometimes be brought under it through deductible items such as HSA or retirement contributions or business deductions. Talk with your tax professional, and we can price full-cost plans for you.</div>';
+      h += '<div class="big"><small>Your estimate</small><b style="font-size:1.7rem;color:#b3261e">Over the 400% limit</b></div>';
+      h += '<div class="note-box">For a household of ' + size + ' the limit is ' + money(r.limit) + '. You are about ' + money(r.over) + ' over it, so there would be no premium tax credit. Deductions like HSA or retirement contributions can sometimes bring income under the line. Ask your tax pro, and we will price your options.</div>';
     } else {
-      h += '<h3 class="res-head">Estimated subsidy for 2027</h3>';
-      h += '<p class="res-sub">At ' + Math.round(r.ratio*100) + '% of the poverty level, you are expected to put about ' + r.pct.toFixed(2) + '% of income toward the benchmark Silver plan. The credit covers the rest of that plan\'s premium.</p>';
-      h += '<div class="stats">';
-      h += '<div class="stat"><b>' + money(r.monthly) + '</b><small>Expected monthly contribution for the benchmark Silver plan</small></div>';
-      if (r.credit !== undefined) {
-        h += '<div class="stat"><b>' + money(r.credit) + '</b><small>Estimated monthly premium tax credit</small></div>';
-        h += '<div class="stat"><b>' + money(r.credit*12) + '</b><small>Estimated credit per year</small></div>';
-      } else {
-        h += '<div class="stat"><b>' + money(r.annual) + '</b><small>Expected annual contribution</small></div>';
-        h += '<div class="stat"><b>' + money(r.room) + '</b><small>Income room before the 400% cliff</small></div>';
-      }
-      h += '</div>';
+      h += '<div class="big"><small>You would pay about this much per month for the benchmark Silver plan</small><b>' + money(r.monthly) + '</b><small>The tax credit covers the rest of that plan\'s price</small></div>';
       var pos = Math.min(r.ratio/4, 1) * 100;
       h += '<div class="bar"><i style="left:' + pos.toFixed(1) + '%"></i></div>';
-      h += '<div class="bar-labels"><span>100% FPL</span><span>250%</span><span>400% FPL: ' + money(r.limit) + '</span></div>';
-      if (r.credit !== undefined && r.credit > 0) {
-        h += '<div class="note-box good">With a ' + money(r.benchmark) + '/mo benchmark premium, your credit is about ' + money(r.credit) + '/mo. You can apply it to any metal tier, and a lower-priced Bronze or Silver plan may cost much less than the benchmark after the credit.</div>';
-      } else if (r.credit !== undefined) {
-        h += '<div class="note-box">Your expected contribution is higher than the benchmark premium you entered, so the estimated credit is $0. Double check the benchmark amount, or ask us to look it up.</div>';
-      } else {
-        h += '<div class="note-box good">Add your area\'s benchmark premium above to see your estimated monthly credit, or let us look it up for free.</div>';
-      }
+      h += '<div class="bar-labels"><span>Lower income</span><span>400% limit: ' + money(r.limit) + '</span></div>';
       if (r.room < r.limit * 0.08) {
-        h += '<div class="note-box">You are close to the 400% limit, within about ' + money(r.room) + '. A small income change can wipe out the credit, so it is worth planning around.</div>';
+        h += '<div class="note-box">You are within ' + money(r.room) + ' of the 400% limit. A small income change can remove the credit, so it is worth planning around.</div>';
+      } else {
+        h += '<div class="note-box good">You have about ' + money(r.room) + ' of room before the 400% limit.</div>';
       }
     }
-    h += '<div class="calc-actions"><a class="btn btn-primary" href="/quote">Get My Exact Numbers, Free</a><a class="btn btn-secondary" href="/blog-aca-subsidy-cliff-2026">Learn About the Cliff</a></div>';
-    h += '<p class="fine">Estimate only. Based on 2027 IRS applicable percentages and 2026 federal poverty guidelines for the 48 states and DC. Your actual credit is determined by the marketplace.</p>';
-    box.innerHTML = h;
-    box.classList.add('show');
-    box.scrollIntoView({behavior:'smooth', block:'start'});
-    if (typeof gtag === 'function') { gtag('event', 'subsidy_calculator_used', {household_size: size, status: r.status}); }
+    if (offState) {
+      h += '<div class="note-box">Alaska and Hawaii use different poverty levels, so treat this as a rough estimate. We will confirm your exact numbers.</div>';
+    }
+    h += '<div class="note-box good">Thanks, ' + name.split(' ')[0].replace(/[<>&]/g,'') + '. A licensed Jade Benefits advisor will look up the real plans and prices for ZIP ' + zip + ' and follow up with your exact numbers.</div>';
+    h += '<a class="call" href="tel:+13529494463">Prefer to talk now? Call 352-949-4463</a>';
+    h += '<p class="fine">Estimate only, based on 2027 IRS percentages and 2026 federal poverty guidelines. Your actual credit is set by the marketplace.</p>';
+    $('result').innerHTML = h;
+    show('pane-3', 3);
   });
 })();
 </script>
