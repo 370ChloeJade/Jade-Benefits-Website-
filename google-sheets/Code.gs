@@ -73,8 +73,15 @@ function autoReply(data, type) {
     if (data.formType && String(data.formType).toLowerCase() === "subsidy_calculator") {
       intro = "Thanks for using the Jade Benefits subsidy calculator. A licensed advisor will look up the real plans and prices for your ZIP code and follow up with your exact numbers.";
     }
-    var next = "While you wait: if you have a list of your doctors and prescriptions handy, it helps us confirm they are covered. " +
-      "Need us sooner? Call or text " + PHONE + ", or just reply to this email.";
+    // Tailor the "while you wait" tip to who is asking: a business (group) or a person/family (individual).
+    var segment = leadSegment(data);
+    var tip = "";
+    if (segment === "group") {
+      tip = "While you wait: it helps to have your employee count, your current carrier, and your renewal date (if you have a plan today) handy so we can start your comparison right away. ";
+    } else if (segment === "individual") {
+      tip = "While you wait: if you have a list of your doctors and prescriptions handy, it helps us confirm they are covered. ";
+    }
+    var next = tip + "Need us sooner? Call or text " + PHONE + ", or just reply to this email.";
 
     var text = "Hi " + first + ",\n\n" + intro + "\n\n" + next +
       "\n\nTalk soon,\nThe Jade Benefits Team\nFort Lauderdale, FL | Licensed in 30+ states\nwww.jadebenefits.com";
@@ -93,6 +100,18 @@ function autoReply(data, type) {
   } catch (mailErr) {
     // Never let an email problem block saving the row.
   }
+}
+
+// Works out whether a lead is a business ("group"), a person/family ("individual"), or unknown ("general").
+function leadSegment(data) {
+  var form = String(data.formType || "").toLowerCase();
+  if (form === "subsidy_calculator") return "individual";
+  var what = String(data.audience || data.type || "").toLowerCase();   // quote form: audience, contact form: type
+  var size = String(data.size || "").toLowerCase();                    // quote form team size
+  if (what.indexOf("group") !== -1 || size === "2 to 9" || size === "10 to 99") return "group";
+  if (what.indexOf("trucker") !== -1 || what.indexOf("1099") !== -1 || what.indexOf("self-employed") !== -1 ||
+      what.indexOf("family") !== -1 || what.indexOf("individual") !== -1) return "individual";
+  return "general";
 }
 
 function notify(subject, rows) {
