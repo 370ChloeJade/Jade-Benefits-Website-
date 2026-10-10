@@ -186,6 +186,16 @@ footer a:hover{color:#fff}
 /* Back to top */
 .to-top{position:fixed;right:18px;bottom:18px;width:48px;height:48px;border-radius:50%;background:var(--green-700);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,visibility .3s,transform .3s,background .2s;z-index:80}
 .to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+/* Sticky mobile call / quote bar (injected by script.js, phones only) */
+.sticky-cta{display:none}
+@media(max-width:768px){
+  .sticky-cta{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:90;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(11,61,46,.10)}
+  .sticky-cta a{flex:1;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;line-height:1}
+  .sticky-cta .sc-call{flex:0 0 38%;background:#fff;color:var(--green-700);border:2px solid var(--green-700)}
+  .sticky-cta .sc-quote{background:var(--green-700);color:#fff;border:2px solid var(--green-700)}
+  body.has-sticky-cta{padding-bottom:72px}
+  body.has-sticky-cta .to-top{bottom:84px}
+}
 .to-top:hover{background:var(--green-600)}
 
 /* Scroll reveal */

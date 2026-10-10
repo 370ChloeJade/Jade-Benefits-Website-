@@ -121,6 +121,22 @@
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ---------- Sticky mobile call / quote bar ---------- */
+  (function () {
+    var path = location.pathname.replace(/\/+$/, "");
+    if (path === "/quote" || path === "/quote.html" || document.querySelector(".sticky-cta")) return;
+    var bar = document.createElement("div");
+    bar.className = "sticky-cta";
+    bar.innerHTML =
+      '<a class="sc-call" href="tel:+13529494463" aria-label="Call Jade Benefits">Call</a>' +
+      '<a class="sc-quote" href="/quote">Get a Free Quote</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add("has-sticky-cta");
+    bar.querySelector(".sc-quote").addEventListener("click", function () {
+      if (window.gtag) gtag('event', 'sticky_quote_click', { page_path: location.pathname });
+    });
+  })();
+
   /* ---------- GA4 key events: phone & email clicks ---------- */
   document.addEventListener("click", function (e) {
     var link = e.target.closest && e.target.closest('a[href^="tel:"], a[href^="mailto:"]');

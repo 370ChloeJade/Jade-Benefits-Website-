@@ -45,6 +45,8 @@ function doPost(e) {
       ]);
     }
 
+    autoReply(data, type);
+
     return ContentService
       .createTextOutput(JSON.stringify({ result: "ok" }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -52,6 +54,44 @@ function doPost(e) {
     return ContentService
       .createTextOutput(JSON.stringify({ result: "error", error: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Instant confirmation email sent to the person who submitted a form.
+// Edit the wording below any time. Replies go to REPLY_TO.
+var REPLY_TO = "info@jadebenefits.com";
+var PHONE = "352-949-4463";
+
+function autoReply(data, type) {
+  try {
+    var email = String(data.email || "").trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
+    var first = String(data.name || "").trim().split(/\s+/)[0] || "there";
+    first = first.replace(/[<>&]/g, "");
+
+    var intro = "Thanks for reaching out to Jade Benefits. We received your request and a licensed advisor will be in touch shortly.";
+    if (data.formType && String(data.formType).toLowerCase() === "subsidy_calculator") {
+      intro = "Thanks for using the Jade Benefits subsidy calculator. A licensed advisor will look up the real plans and prices for your ZIP code and follow up with your exact numbers.";
+    }
+    var next = "While you wait: if you have a list of your doctors and prescriptions handy, it helps us confirm they are covered. " +
+      "Need us sooner? Call or text " + PHONE + ", or just reply to this email.";
+
+    var text = "Hi " + first + ",\n\n" + intro + "\n\n" + next +
+      "\n\nTalk soon,\nThe Jade Benefits Team\nFort Lauderdale, FL | Licensed in 30+ states\nwww.jadebenefits.com";
+    var htmlBody = "<p>Hi " + first + ",</p><p>" + intro + "</p><p>" + next +
+      "</p><p>Talk soon,<br><strong>The Jade Benefits Team</strong><br>Fort Lauderdale, FL | Licensed in 30+ states<br>" +
+      "<a href=\"https://www.jadebenefits.com\">www.jadebenefits.com</a></p>";
+
+    MailApp.sendEmail({
+      to: email,
+      subject: "We got your request, " + first,
+      body: text,
+      htmlBody: htmlBody,
+      name: "Jade Benefits",
+      replyTo: REPLY_TO
+    });
+  } catch (mailErr) {
+    // Never let an email problem block saving the row.
   }
 }
 
